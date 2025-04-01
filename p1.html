@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="logo1.png">
+
+    <title>Product Page</title>
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <header>
+        <button onclick="goBack()" class="back-button">
+            ← Back
+        </button>
+    </header>
+
+    <main class="product-container">
+        <img src="p3.png" alt="Product Image" class="product-image">
+        <div class="product-info">
+            <h1 class="product-title" id="title">Zarar</h1>
+            <div class="product-stats">
+                <p class="product-price" id="price">Rs. 180</p>
+                <p class="product-sold">Sold: 18 units</p>
+            </div>
+            <div class="product-description">
+                <p>This is an amazing product that will change your life. High quality materials and excellent craftsmanship make this a must-have item.</p>
+            </div>
+            <div class="button-container">
+                <button class="buy-button">Add to Cart</button>
+                <button onclick="orderOnWhatsApp()" class="whatsapp-button">Order on WhatsApp</button>
+            </div>
+        </div>
+    </main>
+
+    <div class="cart-button" onclick="openCart()">
+        <span class="cart-icon">🛒</span>
+        <span class="cart-count">0</span>
+    </div>
+
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-modal-content">
+            <h2>Shopping Cart</h2>
+            <div class="cart-items" id="cartItems"></div>
+            <div class="cart-summary">
+                <div class="cart-summary-row">
+                    <span>Subtotal:</span>
+                    <span>Rs. <span id="cartSubtotal">0</span></span>
+                </div>
+                <div class="cart-summary-row">
+                    <span>Delivery Fee:</span>
+                    <span>Rs. <span id="deliveryFee">0</span></span>
+                </div>
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span>Rs. <span id="cartTotal">0</span></span>
+                </div>
+            </div>
+            <div class="cart-actions">
+                <button onclick="closeCart()" class="close-cart">Close</button>
+                <button onclick="showCheckoutForm()" class="checkout-button">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-modal-content">
+            <h2>Checkout</h2>
+            <form class="checkout-form" id="userForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Delivery Address</label>
+                    <textarea id="address" name="address" required></textarea>
+                </div>
+                <div class="cart-actions">
+                    <button type="button" onclick="closeCheckoutForm()" class="close-cart">Back</button>
+                    <button type="button" onclick="openCheckoutForm1()" class="checkout-button" id="submitUser Form">Place Order</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<!-- Form to collect user details -->
+
+<!-- Form to store order data -->
+
+<div class="checkout-modal1" id="checkoutModal1">
+    <div class="checkout-modal-content1">
+        <h2>Confirm Order</h2>
+        <form id="orderForm">
+            <input type="text" name="customerName" id="customerName" placeholder="Customer Name" readonly hidden>
+            <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Phone Number" readonly hidden>
+            <input type="text" name="address" id="orderAddress" placeholder="Address" readonly hidden>
+            <input type="text" name="total" id="total" placeholder="Total Amount" readonly hidden>
+            <input type="text" name="items" id="items" placeholder="info" readonly hidden>
+            <input type="text" id="date" name="date" readonly hidden>
+            <button type="submit" id="submitOrder">Submit Order</button>
+        </form>
+    </div>
+</div>
+
+
+
+    <script src="cart.js"></script>
+    <script>
+        function goBack() {
+    window.history.back();
+}
+
+function orderOnWhatsApp() {
+    const product = {
+        id: 1818,
+        title: 'Zarar',
+        price: 180
+    };
+    
+    const phoneNumber = '03136605128'; // Replace with your actual WhatsApp number
+    const message = encodeURIComponent(
+        `I would like to order:\n\n` +
+        `Product ID: ${product.id}\n` +
+        `Product: ${product.title}\n` +
+        `Price: Rs. ${product.price}`
+    );
+    
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+}
+
+// Initialize product page
+document.addEventListener('DOMContentLoaded', () => {
+    // Add click event for the "Add to Cart" button
+    document.querySelector('.buy-button').addEventListener('click', () => {
+    const product = {
+            id: 1818,
+            title: 'Zarar',
+            price: 180
+        };
+        addToCart(product);
+    });
+});
+    </script>
+</body>
+</html>
