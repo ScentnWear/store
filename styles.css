@@ -585,8 +585,9 @@ footer {
     display: flex;
     flex-direction: column;
 }
-.news {
-    background-color: brown;
+/* .news {
+    background-color: brown; */
+     background-color: rgb(36, 36, 36);
     margin: 0;
     height: 1.6rem;
     display: flex;
